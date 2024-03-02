@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/Login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Teste1</title>
+    <style>
+      .hide {
+        display: none;
+      }
+      .error {
+        border: 2px solid red;
+      }
+      .error-message {
+        color: red;
+        margin-top: 5px;
+      }
+    </style>
+    <script>
+      function entrar() {
+        var usuario = document.getElementById("input1").value.trim();
+        var senha = document.getElementById("input2").value.trim();
+        var errorMessage = document.getElementById("error-message");
+        var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+
+        if (usuario === "") {
+          input1.classList.add("error");
+        } else {
+          input1.classList.remove("error");
+        }
+
+        if (senha === "") {
+          input2.classList.add("error");
+        } else {
+          input2.classList.remove("error");
+        }
+
+        if (usuario === "" || senha === "") {
+          errorMessage.style.display = "block";
+          return;
+        }
+
+        errorMessage.style.display = "none";
+
+        document.getElementById("input1").classList.add("hide");
+        document.getElementById("input2").classList.add("hide");
+        document.getElementById("entrarBtn").classList.add("hide");
+        document.getElementById("carregando").classList.remove("hide");
+        document.getElementById("voltarBtn").classList.remove("hide");
+
+        setTimeout(function() {
+          window.location.href = "./dashboard.html";
+        }, 2000);
+      }
+
+      function voltar() {
+        document.getElementById("input1").classList.remove("hide");
+        document.getElementById("input2").classList.remove("hide");
+        document.getElementById("entrarBtn").classList.remove("hide");
+        document.getElementById("carregando").classList.add("hide");
+        document.getElementById("voltarBtn").classList.add("hide");
+        document.getElementById("error-message").style.display = "none";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <img class="img" src="../assets/unimar.png" alt="Logo Unimar" />
+      <div class="input">
+        <h1>Bem-Vindo a Unimar</h1>
+        <input
+          type="text"
+          id="input1"
+          placeholder="Identificação de Usuário"
+        />
+        <br />
+        <input type="password" id="input2" placeholder="Senha" />
+        <div
+          id="carregando"
+          class="hide"
+          style="margin-top: 75px; color: black"
+        >
+          Carregando...
+        </div>
+
+        <button id="entrarBtn" onclick="entrar()">Entrar</button>
+        <button id="voltarBtn" class="hide" onclick="voltar()">Voltar</button>
+        <div id="error-message" class="error-message hide"></div>
+      </div>
+    </div>
+  </body>
+</html>
